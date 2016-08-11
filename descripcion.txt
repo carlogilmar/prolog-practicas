@@ -1,2 +1,6 @@
-Aqui se encuentran una serie de prácticas desarrolladas con el motor de prolog, para la materia de Fundamentos de la Inteligencia Artificial, el motivo fue practicar.
+Aqui se encuentran una serie de prácticas desarrolladas
+
+con el motor de prolog, para la materia de Fundamentos 
+
+de la Inteligencia Artificial, el motivo fue practicar.
 
