@@ -1,0 +1,67 @@
+
+/*abuelos*/
+padres(abuelaconcha,ivan).
+padres(abuelogerudiel,ivan).
+padres(fabio,rosalba).
+padres(abuelapelos,rosalba).
+padres(abuelapelos,silvio).
+padres(fabio,silvio).
+
+/*otras relaciones*/
+padres(rosalba, jorge).
+padres(rosalba, julia).
+padres(rosalba, saul).
+padres(ivan, jorge).
+padres(ivan, saul).
+padres(ivan, julia).
+
+/*sexo*/
+mujer(julia).
+mujer(rosalba).
+mujer(abuelaconcha).
+mujer(abuelapelos).
+
+hombre(fabio).
+hombre(saul).
+hombre(jorge).
+hombre(ivan).
+hombre(silvio).
+hombre(abuelogerudiel).
+
+/*relaciones*/
+abuela(X,Z):-padres(X,Y),padres(Y,Z),mujer(X).
+abuelo(X,Z):-padres(X,Y),padres(Y,Z),hombre(X).
+
+esposo(X,Y):-padres(X,Z),padres(Y,Z), hombre(X).
+esposa(X,Y):-padres(X,Z),padres(Y,Z), mujer(X).
+
+/*
+hermano(X,Y):-padres(Z,X),padres(Z,Y), esposo(Z,A), padres(A,X), padres(A,Y).
+
+brother(X,Y):-padres(Z,X), padres(Z,Y), esposo(Z,A), padres(A,Y), padres(A,X).
+
+
+
+
+sobrino(X,Y):- padres(Z,X), hermano(Z,Y), hombre(X).
+*/
+
+hermano(X,Y):-padres(P,X),padres(P,Y),hombre(X).
+hermana(X,Y):-padres(P,X),padres(P,Y),mujer(X).
+
+tio(X,Y):- padres(Z,Y), padres(A,Z), padres(A,X).
+
+sobrino(A,B):- tio(B,A).
+
+/*
+
+abuelos(X,Z):-padres(X,Y),padres(Y,Z).
+abuela(X,Y):-abuelos(X,Y),mujer(X).
+abuelo(X,Y):-abuelos(X,Y),hombre(X).
+madre(X,Y):-padres(X,Y),hombre(X).
+padre(X,Y):-padres(X,Y),hombre(X).
+
+*/
+
+
+

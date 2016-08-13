@@ -1,0 +1,2 @@
+
+adivina('Ramon',['es gordo]).

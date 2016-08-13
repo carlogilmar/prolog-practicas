@@ -1,0 +1,11 @@
+
+
+sociologos(metodologos,[kuhn,lakatos,feyerabend]).
+sociologos(positivistas,[comte,durkheim,weber]).
+sociologos(marxistas,[habermas,adorno,horkheimer]).
+sociologos(posmodernos,[bourdieu,morin,bauman]).
+
+%declarando funciones
+
+buscar_metodologo(X):-member(X, sociologos(metodologos, Y)).
+

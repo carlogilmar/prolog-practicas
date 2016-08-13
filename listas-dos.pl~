@@ -1,0 +1,62 @@
+
+%------------- Concatenar------------------------------
+
+%caso vacio
+%si noexiste lista llena entonces el elemento forma el primer elemento de la lista
+	
+	concatenar([],L,L).
+
+%caso nvacio
+%el primer elemento es la lista
+%el segundo elemento es el que se agrega
+%el tercer elemento es la lista modificada
+
+%la relacion puntoguion toma la cola de la lista inicial, el elemento nuevo X
+%se itera
+
+    concatenar([A|B], X, [A|C]):- concatenar(B,X,C).
+
+
+
+    % -----------------adyacentes(E1,E2,L) -----------------
+    adyacentes(X,Y,[X,Y|_]):-!.
+    adyacentes(X,Y,[_|L]):-adyacentes(X,Y,L).
+    %---------------------- ultimo(E,L) --------------------
+    ultimo(E,[E|[]]).
+    ultimo(E,[_|Cl]):- ultimo(E,Cl).
+    %-----------------------  palindromo(L) -----------------
+    palindromo(L):- reverse(L,L).
+   
+
+     % -------------------  prefijo(L,P) ---------------
+    prefijo([],_):-!.
+    prefijo([X],[X|_]):-!.
+    prefijo([X|L],[X|M]):-prefijo(L,M).
+    prefijo([X|T],[L|M]):-es_lista_vacia(X),prefijo(X,L),prefijo(T,M).
+     %------------- sublista(L,S) -------------------------
+    sublista([],_).
+    sublista([A|B],K):- miembro(A,K), sublista(B,K).
+    %---------------  maximo (L,M)- ----------------------
+    maximo([X|Xs],M):-mayor(Xs,X,Y),Y==M.
+    mayor([],M,M).
+    mayor([Z|Zs],Aux,Menor):-Aux>Z,mayor(Zs,Aux,Menor).
+    mayor([Z|Zs],Aux,Menor):-Z>Aux,mayor(Zs,Z,Menor).
+    % -------- añadir por delante (L,E,R) -------------------
+    añadir_por_delante([X|Xs],E,R):-concatenar([E],[X|Xs],R).
+    %----------   añadir por detras(L,E,R) ------------------
+    añadir_por_detras([],[E],[E]).
+    añadir_por_detras([X|Xs],E,[X|Xz]):-concatenar(Xs,[E],Xz).
+    %eliminar elemento(L,E,R) elimina todos los elementos iguales a 3
+    elimina_elemento(_,[],[]).
+    eliminar_elemento(X,[X|C],R):-!,eliminar_elemento(X,C,R).
+    eliminar_elemento(X,[Y|Xs],[Y|Xa]):- eliminar_elemento(X,Xs,Xa).
+    % ----------  eliminar_prim_aparicion(L,E,R) ---------------------
+    eliminar_prim_aparicion([X|Xs],X,Xs).
+    eliminar_prim_aparicion([Y|C1],E,[Y|C2]):-eliminar_prim_aparicion(C1,E,C2).
+    % -------------------  duplicar_lista(L,LL)  -----------------------
+    %EJEMPL: duplicar_lista([1,2],LL). respta  [1,2,1,2]
+    duplicar_lista(L,Ll):-concatenar(L,L,Ll) .
+    %-------------- duplicar_elementos(L,LL) ---------------------------
+    duplicar_elementos([],[]).
+    duplicar_elementos([X|Xs],[X,X|Xss]):-duplicar_elementos(Xs,Xss).
+
